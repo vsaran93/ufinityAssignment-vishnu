@@ -1,0 +1,26 @@
+{
+  "name": "ufinityassignment-vishnu",
+  "version": "1.0.0",
+  "description": "this administrative purpose app of teachers ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vsaran93/ufinityAssignment-vishnu.git"
+  },
+  "keywords": [
+    "node",
+    "webApi"
+  ],
+  "author": "vishnu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vsaran93/ufinityAssignment-vishnu/issues"
+  },
+  "homepage": "https://github.com/vsaran93/ufinityAssignment-vishnu#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
