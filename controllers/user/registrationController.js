@@ -6,28 +6,20 @@ const register = async (req, res) => {
     const { teacher, students } = req.body;
     let teacherId = '';
     try {
-        getTeacherId(teacher).then((tid) => {
-            teacherId = tid;
-        });
-        students.forEach(student => {
-            console.log('list of students', student)
-            getStudentId(student).then((studentId) => {
-                if (studentId && teacherId) {
-                    insert_teacher_Student(teacherId, studentId).then((result) => {
-                        if (result) {
-                            return res.status(200).json({
-                                success: true,
-                                message: 'students added successfully',
-                                result: result
-                            })
-                        } else {
-                            return res.status(200).json({
-                                success: true,
-                                message: 'students have already assigned with teacher!',
-                            })
+        getTeacherId(teacher).then((teacher_id) => {
+            teacherId = teacher_id;
+            new Promise((resolve, reject) => {
+                students.forEach(student => {
+                    getStudentId(student).then((studentId) => {
+                        if (studentId && teacherId) {
+                            insert_teacher_Student(teacherId, studentId);
                         }
                     });
-                }
+                });
+                resolve(res.status(200).json({
+                    success: true,
+                    message: 'students added successfully with the given teacher'
+                }))
             });
         });
     }
@@ -38,7 +30,6 @@ const register = async (req, res) => {
             errorDetails: err
         })
     }
-    //check teacher exist
 }
 
 
@@ -73,14 +64,10 @@ const getStudentId = async (email_student) => {
 }
 
 const insert_teacher_Student = async (teacherId, studentId) => {
-    let output = '';
-    Teacher_Student.findOne({ where: { 'TeacherId': teacherId, 'StudentId': studentId } }).then((connection) => {
-        if (!connection) {
-            Teacher_Student.create({ 'TeacherId': teacherId, 'StudentId': studentId }).then((result) => {
-                output = result;
-            });
+    Teacher_Student.count({ where: { 'TeacherId': teacherId, 'StudentId': studentId } }).then((count) => {
+        if (count == 0) {
+            Teacher_Student.create({ 'TeacherId': teacherId, 'StudentId': studentId });
         }
-        return output;
     });
 }
 module.exports = { register };
