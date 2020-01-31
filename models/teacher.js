@@ -1,19 +1,23 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../db/connection');
 
-const UserRole = sequelize.define('userRole', {
-    id: {
+let Teacher = sequelize.define('Teacher', {
+    TeacherId: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    roleName: {
+    Email: {
         type: DataTypes.STRING
     },
     createdAt: {
         type: DataTypes.DATE,
-        defaultValue: sequelize.Now()
+        defaultValue: new Date()
     }
+}, {
+    freezeTableName: true,
+    timestamps: false 
 });
 
-module.exports = UserRole;
+
+module.exports = Teacher;
