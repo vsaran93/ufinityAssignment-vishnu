@@ -5,6 +5,13 @@ const Teacher_Student = require('../../models/teacher-student');
 const register = async (req, res) => {
     const { teacher, students } = req.body;
     let teacherId = '';
+
+    if (!teacher || students.length < 1) {
+        res.status(400).json({
+            success: false,
+            message: 'Bad Request'
+        })
+    }
     try {
         getTeacherId(teacher).then((teacher_id) => {
             teacherId = teacher_id;

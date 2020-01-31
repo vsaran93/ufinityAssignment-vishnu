@@ -10,6 +10,10 @@ let Student = sequelize.define('Student', {
     Email: {
         type: DataTypes.STRING
     },
+    IsSuspended: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+    },
     createdAt: {
         type: DataTypes.DATE,
         defaultValue: new Date()

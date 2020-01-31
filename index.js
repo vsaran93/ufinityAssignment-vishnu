@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 const port = 3006;
 const db = require('./db/connection');
 const registerEndPoint = require('./controllers/user/registrationController');
+const retrieveEndpoint = require('./controllers/user/retrieveController');
+const teacherActionEndpoint = require('./controllers/user/teacherActionController');
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -24,7 +26,9 @@ app.get('/', (req, res) => {
     res.send('Welcome to Assignment');
 })
 
-app.post('/register', registerEndPoint.register)
+app.post('/api/register', registerEndPoint.register)
+app.get('/api/commonstudents', retrieveEndpoint.getAssociatedStudents)
+app.post('/api/suspend', teacherActionEndpoint.suspendStudents)
 
 app.listen(port, () => {
     console.log(`App is currently running in port ${port} !`);
