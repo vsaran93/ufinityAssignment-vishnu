@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { connect } from 'react-redux';
 
 const styles = theme => ({
     table: {
@@ -18,7 +19,13 @@ class ListStudent extends React.Component {
     state = {
         data: []
     }
+    componentWillReceiveProps(p) {
+        if(this.state.data.length !== p.student.studentList.length) {
+            this.setState({ data: p.student.studentList })
+        }
+    }
     render() {
+        console.log('this.props....', this.props)
         const classes = this.props;
         const { data } = this.state;
         return (
@@ -33,12 +40,12 @@ class ListStudent extends React.Component {
                     </TableHead>
                     <TableBody>
                         {data.map(row => (
-                            <TableRow key={row.name}>
+                            <TableRow key={row.Email}>
                                 <TableCell component="th" scope="row">
-                                    {row.name}
+                                    {row.Email}
                                 </TableCell>
-                                <TableCell align="right">{row.calories}</TableCell>
-                                <TableCell align="right">{row.fat}</TableCell>
+                                <TableCell align="right">{row.IsSuspended ? 'Suspended' : 'Not Suspended'}</TableCell>
+                                <TableCell align="right">{""}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
@@ -48,4 +55,8 @@ class ListStudent extends React.Component {
     }
 }
 
-export default  withStyles(styles)(ListStudent);
+const mapStateToProps = state => ({
+    student: state.UserReducer
+})
+
+export default  connect(mapStateToProps, null)(withStyles(styles)(ListStudent));

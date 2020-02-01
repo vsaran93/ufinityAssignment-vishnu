@@ -7,6 +7,9 @@ const db = require('./db/connection');
 const registerEndPoint = require('./controllers/user/registrationController');
 const retrieveEndpoint = require('./controllers/user/retrieveController');
 const teacherActionEndpoint = require('./controllers/user/teacherActionController');
+const cors = require('cors')
+
+app.use(cors())
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))

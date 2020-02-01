@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
-import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import CloseIcon from '@material-ui/icons/Close';
-import DirectionsIcon from '@material-ui/icons/Directions';
-import Button from '@material-ui/core/Button'
+import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux';
+import { getAllStudents } from '../../services/user/retrieveStudents';
+import { updateStudentList } from '../../redux/actions/UserAction';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
 
 
 
-const SearchTeacher = () => {
+const SearchTeacher = (props) => {
     const classes = useStyles();
     const [ searchText, setSearchText ] = useState("");
     const captureText = (e) => {
@@ -40,6 +40,11 @@ const SearchTeacher = () => {
     }
     const resetSearch = () => {
         setSearchText("");
+    }
+    const searchStudents = () => {
+        getAllStudents(searchText).then((res) => {
+            props.updateStudentList(res.data.studentsList);
+        }) 
     }
     return (
         <Paper component="form" className={classes.root}>
@@ -56,11 +61,18 @@ const SearchTeacher = () => {
             <IconButton type="submit" className={classes.iconButton} aria-label="search">
                 <CloseIcon onClear={resetSearch}/>
             </IconButton>
-            <Button variant="contained" color="primary">
+            <Button onClick={searchStudents} variant="contained" color="primary">
                 Search
                 </Button>
         </Paper>
     )
 }
 
-export default SearchTeacher;
+const mapStateToProps = state => ({
+})
+
+const mapDispatchToProps = {
+    updateStudentList: updateStudentList
+}
+
+export default connect(null, mapDispatchToProps)(SearchTeacher);
