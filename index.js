@@ -29,6 +29,7 @@ app.get('/', (req, res) => {
 app.post('/api/register', registerEndPoint.register)
 app.get('/api/commonstudents', retrieveEndpoint.getAssociatedStudents)
 app.post('/api/suspend', teacherActionEndpoint.suspendStudents)
+app.post('/api/retrievefornotifications', teacherActionEndpoint.sendNotifications);
 
 app.listen(port, () => {
     console.log(`App is currently running in port ${port} !`);
