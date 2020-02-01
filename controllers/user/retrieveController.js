@@ -10,8 +10,8 @@ const getAssociatedStudents = (req, res) => {
     const getStudent = sequelize.query(`SELECT DISTINCT s.Email FROM teacher_student as ts 
     LEFT JOIN teacher as t ON t.TeacherId = ts.TeacherId
     LEFT JOIN student as s ON s.StudentId = ts.StudentId
-    WHERE t.Email IN(:email)`, { 
-        replacements: { email: teacherList },
+    WHERE t.Email IN(:email) AND s.IsSuspended = :status`, { 
+        replacements: { email: teacherList, status: false },
         type: QueryTypes.SELECT
     })
 
