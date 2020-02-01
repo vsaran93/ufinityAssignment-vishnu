@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
 const styles = theme => ({
     table: {
         minWidth: 650,
-    },
+    }
 });
 
 class ListStudent extends React.Component {
@@ -36,10 +36,11 @@ class ListStudent extends React.Component {
         )
     }
     render() {
-        console.log('this.props....', this.props)
         const classes = this.props;
         const { data } = this.state;
         return (
+            <div>
+            <h3>Student Details</h3>
             <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead title="Students Details">
@@ -62,6 +63,7 @@ class ListStudent extends React.Component {
                     </TableBody>
                 </Table>
             </TableContainer>
+            </div>
         );
     }
 }
