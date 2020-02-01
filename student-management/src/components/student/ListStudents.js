@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 
 const styles = theme => ({
@@ -24,6 +25,16 @@ class ListStudent extends React.Component {
             this.setState({ data: p.student.studentList })
         }
     }
+    displayButton = (isSuspend) => {
+        if (isSuspend) {
+            return (
+                <Button variant="outlined" color="primary">UnSuspend</Button>
+            )
+        }
+        return (
+            <Button variant="outlined" color="secondary">Suspend</Button>
+        )
+    }
     render() {
         console.log('this.props....', this.props)
         const classes = this.props;
@@ -34,8 +45,8 @@ class ListStudent extends React.Component {
                     <TableHead title="Students Details">
                         <TableRow>
                             <TableCell>Student's Email</TableCell>
-                            <TableCell align="right">Status</TableCell>
-                            <TableCell align="right">Action</TableCell>
+                            <TableCell>Status</TableCell>
+                            <TableCell>Action</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -44,8 +55,8 @@ class ListStudent extends React.Component {
                                 <TableCell component="th" scope="row">
                                     {row.Email}
                                 </TableCell>
-                                <TableCell align="right">{row.IsSuspended ? 'Suspended' : 'Not Suspended'}</TableCell>
-                                <TableCell align="right">{""}</TableCell>
+                                <TableCell>{row.IsSuspended ? 'Suspended' : 'Not Suspended'}</TableCell>
+                                <TableCell>{this.displayButton(row.IsSuspended)}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
