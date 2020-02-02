@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar(props) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -27,7 +27,7 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             Student Management
           </Typography>
-          <Button color="inherit">Register</Button>
+          <Button onClick={props.openModal} color="inherit">Register</Button>
         </Toolbar>
       </AppBar>
     </div>

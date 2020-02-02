@@ -41,7 +41,8 @@ const SearchTeacher = (props) => {
     const resetSearch = () => {
         setSearchText("");
     }
-    const searchStudents = () => {
+    const searchStudents = (e) => {
+        e.preventDefault();
         getAllStudents(searchText).then((res) => {
             props.updateStudentList(res.data.studentsList);
         }) 
@@ -51,13 +52,15 @@ const SearchTeacher = (props) => {
             <IconButton type="submit" className={classes.iconButton} aria-label="search">
                 <SearchIcon />
             </IconButton>
-            <InputBase
-                value={searchText}
-                onChange={captureText}
-                className={classes.input}
-                placeholder="search registered Teacher"
-                inputProps={{ 'aria-label': 'search registered Teacher' }}
-            />
+            <form onSubmit={searchStudents}>
+                <InputBase
+                    value={searchText}
+                    onChange={captureText}
+                    className={classes.input}
+                    placeholder="search registered Teacher"
+                    inputProps={{ 'aria-label': 'search registered Teacher' }}
+                />
+            </form>
             <IconButton type="submit" className={classes.iconButton} aria-label="search">
                 <CloseIcon onClear={resetSearch}/>
             </IconButton>

@@ -9,10 +9,15 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
+import { suspendStudent } from '../../services/user/retrieveStudents';
+import { suspendedStudent } from '../../redux/actions/UserAction';
 
 const styles = theme => ({
     table: {
         minWidth: 650,
+    },
+    tableHeading: {
+        margin: 5
     }
 });
 
@@ -25,22 +30,29 @@ class ListStudent extends React.Component {
             this.setState({ data: p.student.studentList })
         }
     }
-    displayButton = (isSuspend) => {
-        if (isSuspend) {
+    displayButton = (row) => {
+        if (row.IsSuspended) {
             return (
                 <Button variant="outlined" color="primary">UnSuspend</Button>
             )
         }
         return (
-            <Button variant="outlined" color="secondary">Suspend</Button>
+            <Button onClick={() => this.suspendingStudent(row.Email)} variant="outlined" color="secondary">Suspend</Button>
         )
+    }
+    suspendingStudent = (email) => {
+        if(email) {
+            suspendStudent({"student": email}).then((res) => {
+                this.props.suspendedStudent(email);
+            })
+        }
     }
     render() {
         const classes = this.props;
         const { data } = this.state;
         return (
             <div>
-            <h3>Student Details</h3>
+            <div className="table-heading"><h4>Student Details</h4></div>
             <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead title="Students Details">
@@ -57,7 +69,7 @@ class ListStudent extends React.Component {
                                     {row.Email}
                                 </TableCell>
                                 <TableCell>{row.IsSuspended ? 'Suspended' : 'Not Suspended'}</TableCell>
-                                <TableCell>{this.displayButton(row.IsSuspended)}</TableCell>
+                                <TableCell>{this.displayButton(row)}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
@@ -72,4 +84,7 @@ const mapStateToProps = state => ({
     student: state.UserReducer
 })
 
-export default  connect(mapStateToProps, null)(withStyles(styles)(ListStudent));
+const mapDispatchToProps = {
+    suspendedStudent: suspendedStudent
+}
+export default  connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(ListStudent));
