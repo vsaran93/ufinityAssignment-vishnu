@@ -56,6 +56,15 @@ code {
   margin: 20px;
 }
 
+.success-msg {
+  color: green;
+  font-weight: 500;
+}
+
+.success-div {
+  margin: 20px
+}
+
 @media only screen and (min-width: 600px) {
   .modal-wrapper .MuiPaper-root {
     min-width: 700px !important;
