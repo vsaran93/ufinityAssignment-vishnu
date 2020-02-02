@@ -1,0 +1,2 @@
+export const UPDATE_USER_LIST = 'UPDATEUSERLIST';
+export const SUSPEND_USER = 'SUSPEND_USER';

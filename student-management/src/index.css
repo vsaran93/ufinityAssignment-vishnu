@@ -1,0 +1,77 @@
+body {
+  margin: 0;
+  background-color: #F7F5F5 ;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.search-center-div {
+  z-index: 44;
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.table-heading {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.student-input {
+  margin-bottom: 5px !important;
+  padding-bottom: 5px;
+}
+
+.error-msg {
+    margin-left: 15px;
+    color: red;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.notification-button {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+    margin-left: 114px !important;
+    margin-right: 114px !important;
+    background-color: green !important;
+}
+
+.notification-text {
+  margin: 10px !important;
+  padding: 5px !important;
+}
+
+.notification-recipient {
+  margin: 20px;
+}
+
+.success-msg {
+  color: green;
+  font-weight: 500;
+}
+
+.success-div {
+  margin: 20px
+}
+
+@media only screen and (min-width: 600px) {
+  .modal-wrapper .MuiPaper-root {
+    min-width: 700px !important;
+    min-height: 400px !important;
+  }
+  .wrapper-notification .MuiPaper-root {
+    min-width: 400px !important;
+    min-height: 400px !important;
+  }
+}
