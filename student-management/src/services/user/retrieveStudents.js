@@ -21,3 +21,8 @@ export const suspendStudent = (student) => {
     let url = `${serverUrl}/suspend`;
     return axios.post(url, student, headers);
 }
+
+export const sendNotification = (notification) => {
+    let url = `${serverUrl}/retrievefornotifications`;
+    return axios.post(url, notification, headers);
+}

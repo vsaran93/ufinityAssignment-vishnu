@@ -17,7 +17,7 @@ code {
   z-index: 44;
   position: absolute;
   left: 50%;
-  top: 25%;
+  top: 30%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
@@ -39,9 +39,30 @@ code {
     font-weight: 600;
 }
 
+.notification-button {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+    margin-left: 114px !important;
+    margin-right: 114px !important;
+    background-color: green !important;
+}
+
+.notification-text {
+  margin: 10px !important;
+  padding: 5px !important;
+}
+
+.notification-recipient {
+  margin: 20px;
+}
+
 @media only screen and (min-width: 600px) {
-  .modal-wrapper {
+  .modal-wrapper .MuiPaper-root {
     min-width: 700px !important;
+    min-height: 400px !important;
+  }
+  .wrapper-notification .MuiPaper-root {
+    min-width: 400px !important;
     min-height: 400px !important;
   }
 }

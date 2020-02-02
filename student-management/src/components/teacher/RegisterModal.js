@@ -100,10 +100,10 @@ export default function ResponsiveDialog(props) {
                     </Grid>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={props.closeModal} color="primary" autoFocus>
+                    <Button onClick={props.closeModal} variant="outlined" color="secondary" >
                         Cancel
                     </Button>
-                    <Button onClick={handleRegister} color="primary" autoFocus>
+                    <Button onClick={handleRegister} variant="outlined" color="primary">
                         Register
                     </Button>
                 </DialogActions>
