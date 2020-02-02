@@ -71,9 +71,6 @@ const SearchTeacher = (props) => {
     )
 }
 
-const mapStateToProps = state => ({
-})
-
 const mapDispatchToProps = {
     updateStudentList: updateStudentList
 }

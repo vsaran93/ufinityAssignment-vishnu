@@ -3,44 +3,24 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { register } from '../../services/user/retrieveStudents';
 import '../../index.css';
 
-
-const useStyles = makeStyles(theme => ({
-    root: {
-        flexGrow: 1,
-        '& .MuiTextField-root': {
-            margin: theme.spacing(1),
-            width: 200,
-        },
-    },
-    paper: {
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-    },
-}));
-
-
+const ERROR_MSG = "To Register Teacher's Email address and at least one student email address needed!";
+const TITLE = "Register Teacher and Students";
 export default function ResponsiveDialog(props) {
     const [students, setStudents] = useState([]);
     const [teacher, setTeacher] = useState("");
     const [message, setMessage] = useState("");
     const [primaryStudent, setPrimaryStudent] = useState("");
     const theme = useTheme();
-    const classes = useStyles();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
     const addInput = ev => {
-        debugger;
         setStudents(prevStudents => ([...prevStudents, students.length]))
     }
 
@@ -57,10 +37,9 @@ export default function ResponsiveDialog(props) {
                 
             })
         } else {
-            setMessage("To Register Teacher's Email address and atleast one student email address needed!")
+            setMessage(ERROR_MSG);
         }
     }
-    console.log('check states', students)
     return (
         <div>
             <Dialog
@@ -69,7 +48,7 @@ export default function ResponsiveDialog(props) {
                 open={props.openDialog}
                 aria-labelledby="responsive-dialog-title"
             >
-                <DialogTitle id="responsive-dialog-title">{"Register Teacher and Students"}</DialogTitle>
+                <DialogTitle id="responsive-dialog-title">{TITLE}</DialogTitle>
                 <div><p className="error-msg">{message}</p></div>
                 <DialogContent>
                     <Grid container spacing={3}>
