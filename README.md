@@ -12,10 +12,10 @@ To run backend server locally
 # node index.js 
 
 End points 
-1. Register - https://uf-student-management.herokuapp.com/api/register
-2. Retrieve Student Details Using Teacher's Email -  https://uf-student-management.herokuapp.com/api/commonstudents
-3. Suspend Students - https://uf-student-management.herokuapp.com/api/suspend
-4. Retrieve Notification - https://uf-student-management.herokuapp.com/api/retrievefornotifications
+1. Register - http://localhost:3006/api/register or https://uf-student-management.herokuapp.com/api/register
+2. Retrieve Student Details Using Teacher's Email -  http://localhost:3006/api/commonstudents or https://uf-student-management.herokuapp.com/api/commonstudents
+3. Suspend Students - http://localhost:3006/api/suspend or https://uf-student-management.herokuapp.com/api/suspend 
+4. Retrieve Notification - http://localhost:3006/api/retrievefornotifications or https://uf-student-management.herokuapp.com/api/retrievefornotifications
 
 
 To run frond-end app locally 
