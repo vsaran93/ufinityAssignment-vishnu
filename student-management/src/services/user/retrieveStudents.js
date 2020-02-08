@@ -8,8 +8,10 @@ const headers = {
 let serverUrl = 'http://localhost:3006/api'
 
 export const getAllStudents = (teacher_email) => {
-    let url = `${serverUrl}/commonstudents?teacher=${teacher_email}`;
-    return axios.get(url, headers);
+    let url = `${serverUrl}/commonstudents`;
+    return axios.get(url,{
+        params: {teacher: teacher_email}
+    });
 }
 
 export const register = (user) => {
