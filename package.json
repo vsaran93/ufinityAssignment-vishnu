@@ -2,6 +2,7 @@
   "name": "ufinityassignment-vishnu",
   "version": "1.0.0",
   "description": "this administrative purpose app of teachers ",
+  "proxy":"https://uf-student-management.herokuapp.com/api" ,
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -24,6 +25,7 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "http-proxy": "^1.18.0",
     "mysql2": "^2.1.0",
     "sequelize": "^5.21.3",
     "sequelize-cli": "^5.5.1"

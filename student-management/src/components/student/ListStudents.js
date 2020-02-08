@@ -26,7 +26,7 @@ class ListStudent extends React.Component {
         data: []
     }
     componentWillReceiveProps(p) {
-        if(this.state.data.length !== p.student.studentList.length) {
+        if(p.student.studentList && p.student.studentList.length > 0) {
             this.setState({ data: p.student.studentList })
         }
     }
